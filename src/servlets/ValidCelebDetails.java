@@ -53,7 +53,8 @@ public class ValidCelebDetails extends HttpServlet {
 			String celebDetail=service.getCelebrity(celebId).toString();
 			HttpSession session=request.getSession();
 			session.setAttribute("celebDetail", celebDetail);
-			response.sendRedirect("http://localhost:8080/appointment/CelebDetail.jsp");
+			session.setAttribute("celebId", celebId);
+			response.sendRedirect("http://localhost:8080/appointment/CelebDetailForOthers.jsp");
 		}
 		else
 			response.sendRedirect("http://localhost:8080/appointment/CelebCredentials.jsp");

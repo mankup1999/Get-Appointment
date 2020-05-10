@@ -30,7 +30,7 @@
 					%>
 							<a href="showCelebGet?celebId=<% out.print(celeb.getCelebId()); %>">
 							<b><%= name %>:</b></a>
-							<a href="applyAppointment?celebId=<% out.print(celeb.getCelebId()); %>">
+							<a href="applyForm.jsp?celebId=<% out.print(celeb.getCelebId()); %>">
 							<b>Apply</b>
 							</a>
 							<br>

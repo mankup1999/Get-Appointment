@@ -310,6 +310,14 @@ public class Service {
 		return status;
 	}
 	
+	public int updateApplicationStatus(int applicationId) {
+		int status=-1;
+		String query="update Application_Details set Status='Approved' where ApplicationId="+applicationId;
+		//System.out.println(query);
+		status=DBConnection.update(query);
+		return status;
+	}
+	
 	public int getNewCelebId() {
 		int id=105;
 		String query="select max(CelebId) from Celeb_Details";
@@ -329,6 +337,23 @@ public class Service {
 	public int getNewApplicantId() {
 		int id=100;
 		String query="select max(ApplicantId) from Applicant_Details";
+		ResultSet res=DBConnection.processQuery(query);
+		try {
+			if(res.next()) {
+				id=res.getInt(1)+1;
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		finally {
+			return id;
+		}
+	}
+	
+	public int getNewApplicationId() {
+		int id=105;
+		String query="select max(CelebId) from Applications";
 		ResultSet res=DBConnection.processQuery(query);
 		try {
 			if(res.next()) {
@@ -364,6 +389,136 @@ public class Service {
 		}
 	}
 	
+	public int insertApplication(int applicationId, int applicantId,int celebId) {
+		int status=-1;
+		String query="insert into Applications(ApplicationId,ApplicantId,CelebId)"
+				+ "values ("+applicationId+","+applicantId+","+celebId+")";
+		//System.out.println(query);
+		status=DBConnection.update(query);
+		return status;
+	}
+	
+	public int insertApplicationRecord(int applicationId,String intent) {
+		int status=-1;
+		String query="insert into Application_Details(ApplicationId,Content,Status)"
+				+ "values ("+applicationId+",'"+intent+"','waiting')";
+		//System.out.println(query);
+		status=DBConnection.update(query);
+		return status;
+	}
+	
+	public ArrayList<Integer> getApplicationList(int applicantId){
+		ArrayList<Integer> applications=null;
+		String query="select ApplicationId from Applications where ApplicantId="+applicantId;
+		try {
+			ResultSet res=DBConnection.processQuery(query);
+			if(res.next()) {
+				applications=new ArrayList<Integer>();
+				applications.add(res.getInt(1));
+			}
+			while(res.next()) {
+				applications.add(res.getInt(1));
+			}
+		}
+		catch(Exception ex) {
+			System.out.println(ex);
+		}
+		finally {
+			return applications;
+		}
+	}
+	
+	public ArrayList<Integer> getApplicationListforCeleb(int celebId){
+		ArrayList<Integer> applications=null;
+		String query="select ApplicationId from Applications where CelebId="+celebId;
+		try {
+			ResultSet res=DBConnection.processQuery(query);
+			if(res.next()) {
+				applications=new ArrayList<Integer>();
+				applications.add(res.getInt(1));
+			}
+			while(res.next()) {
+				applications.add(res.getInt(1));
+			}
+		}
+		catch(Exception ex) {
+			System.out.println(ex);
+		}
+		finally {
+			return applications;
+		}
+	}
+	
+	public int getCelebIdFromApplication(int applicationId) {
+		int id=-1;
+		String query="select CelebId from Applications where ApplicationId="+applicationId;
+		ResultSet res=DBConnection.processQuery(query);
+		try {
+			if(res.next()) {
+				id=res.getInt(1);
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		finally {
+			return id;
+		}
+		
+	}
+	public String getStatusApplication(int applicationId) {
+		String status="Not Approved yet";
+		String query="select Status from Application_Details where ApplicationId="+applicationId;
+		ResultSet res=DBConnection.processQuery(query);
+		try {
+			if(res.next()) {
+				String x=res.getString(1);
+				if(x.equalsIgnoreCase("Approved"))
+						status="Approved";
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		finally {
+			return status;
+		}
+	}
+	
+	public String getIntent(int applicationId) {
+		String content="No Intent Message";
+		String query="select Content from Application_Details where ApplicationId="+applicationId;
+		ResultSet res=DBConnection.processQuery(query);
+		try {
+			if(res.next()) {
+				content=res.getString(1);
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		finally {
+			return content;
+		}
+	}
+	
+	public int getApplicantId(int applicationId) {
+		int id=-1;
+		String query="select ApplicantId from Applications where ApplicationId="+applicationId;
+		ResultSet res=DBConnection.processQuery(query);
+		try {
+			if(res.next()) {
+				id=res.getInt(1);
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		finally {
+			return id;
+		}
+	}
+	
 	public static void main(String[] args) {
 		Service service=new Service();
 		int id=service.isApplicantDetailsValid("root","password");
@@ -396,6 +551,9 @@ public class Service {
 		//System.out.println(service.deleteAdminVerify(celebId));
 		//System.out.println(service.getNewCelebId());
 		//System.out.println(service.getNewApplicantId());
+		//System.out.println(service.getNewApplicationId());
+		//System.out.println(service.insertApplication(10, 10, 10));
+		//System.out.println(service.insertApplicationRecord(10, "hii sir"));
 	}
 
 }

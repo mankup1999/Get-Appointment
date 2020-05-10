@@ -37,15 +37,6 @@
 						</tr>
 					</table>
 					<%
-			out.println("<h2>"+"My Applications:"+"</h2>");
-			ArrayList<Integer> applications=serv.getApplicationList(applicantId);
-			for(int i=0;i<applications.size();i++){
-				int celebId=serv.getCelebIdFromApplication(applications.get(i));
-				String celebName=serv.getCelebrity(celebId).getName();
-				String status=serv.getStatusApplication(applications.get(i));
-				
-				out.println("<b>"+celebName+": </b>"+status);
-			}
 		}
 		catch(Exception e){
 			out.println("Error Occured");
