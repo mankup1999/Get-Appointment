@@ -2,6 +2,7 @@ package co.manku.service;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import co.manku.dao.DBConnection;
 import co.manku.main.Applicant;
@@ -243,7 +244,7 @@ public class Service {
 				+ "("+celebId+",'"+name+"','"+email+"',"+mob+",'"+address+"',"+photo+","+enableMail+","
 						+ enableMsg+","+isPaid+","+needReferral+","+verifyStatus
 				+ ")";
-		//System.out.println(query);
+		System.out.println(query);
 		status=DBConnection.update(query);
 		return status;
 	}
@@ -260,7 +261,7 @@ public class Service {
 		int status=-1;
 		String query="insert into Celeb_Login(CelebId,Username,Password)"
 				+ "values ("+celebId+",'"+username+"','"+password+"')";
-		//System.out.println(query);
+		System.out.println(query);
 		status=DBConnection.update(query);
 		return status;
 	}
@@ -353,7 +354,7 @@ public class Service {
 	
 	public int getNewApplicationId() {
 		int id=105;
-		String query="select max(CelebId) from Applications";
+		String query="select max(ApplicationId) from Applications";
 		ResultSet res=DBConnection.processQuery(query);
 		try {
 			if(res.next()) {
@@ -519,6 +520,66 @@ public class Service {
 		}
 	}
 	
+	public int updateApplicationMessaging(int applicationId) {
+		int status=-1;
+		String query="update Application_Details set EnableMsg=1 where ApplicationId="+applicationId;
+		//System.out.println(query);
+		status=DBConnection.update(query);
+		return status;
+	}
+	
+	public int insertChatData(int applicationId,String chat,String userType) {
+		int status=-1;
+		String query="insert into Chat_Data(ApplicationId,UserType,Data) values"
+				+ "("
+				+ applicationId+",'"+userType+"','"+chat+"'"
+				+ ")";
+		//System.out.println(query);
+		status=DBConnection.update(query);
+		return status;
+	}
+	
+	public ArrayList<HashMap<String,String>> fetchChats(int applicationId){
+		ArrayList<HashMap<String,String>> list=null;
+		String query="select UserType,Data from Chat_Data where applicationId="+applicationId+" "
+				+ "order by Id";
+		try {
+			ResultSet res=DBConnection.processQuery(query);
+			if(res.next()) {
+				list=new ArrayList<HashMap<String,String>>();
+				HashMap<String,String> x=new HashMap();
+				x.put(res.getString(1),res.getString(2));
+				list.add(x);
+			}
+			while(res.next()) {
+				HashMap<String,String> x=new HashMap();
+				x.put(res.getString(1),res.getString(2));
+				list.add(x);
+			}
+		}
+		finally {
+			return list;
+		}
+	}
+	
+	public int getApplicationMessagingStatus(int applicationId) {
+		int status=-1;
+		String query="select EnableMsg from Application_Details where ApplicationId="+applicationId;
+		//System.out.println(query);
+		try {
+			ResultSet res=DBConnection.processQuery(query);
+			if(res.next()) {
+				status=res.getInt(1);
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		finally {
+			return status;
+		}
+	}
+	
 	public static void main(String[] args) {
 		Service service=new Service();
 		int id=service.isApplicantDetailsValid("root","password");
@@ -554,6 +615,11 @@ public class Service {
 		//System.out.println(service.getNewApplicationId());
 		//System.out.println(service.insertApplication(10, 10, 10));
 		//System.out.println(service.insertApplicationRecord(10, "hii sir"));
+		//System.out.println(service.getNewApplicationId());
+		//System.out.println(service.updateApplicationMessaging(100));
+		//System.out.println(service.getApplicationMessagingStatus(123));
+		//System.out.println(service.insertChatData(10, "hello", "sender"));
+		//System.out.println(service.fetchChats(11));
 	}
 
 }

@@ -12,7 +12,12 @@
 <body align="center">
 	<%
 		try{
-			int applicantId=(Integer)session.getAttribute("applicantId");
+			int applicantId=-1;
+			Integer applicantID=(Integer)session.getAttribute("applicantId");
+			if(applicantID==null)
+				response.sendRedirect("http://localhost:8080/appointment/");
+			else
+				applicantId=applicantID;
 			Service serv=new Service();
 			Applicant applicant=serv.getApplicant(applicantId);
 			if(applicant!=null)
@@ -39,13 +44,25 @@
 					<%
 			out.println("<h2>"+"My Applications:"+"</h2>");
 			ArrayList<Integer> applications=serv.getApplicationList(applicantId);
-			for(int i=0;i<applications.size();i++){
-				int celebId=serv.getCelebIdFromApplication(applications.get(i));
-				String celebName=serv.getCelebrity(celebId).getName();
-				String status=serv.getStatusApplication(applications.get(i));
-				
-				out.println("<b>"+celebName+": </b>"+status);
+			if(applications!=null){
+				for(int i=0;i<applications.size();i++){
+					int celebId=serv.getCelebIdFromApplication(applications.get(i));
+					String celebName=serv.getCelebrity(celebId).getName();
+					String status=serv.getStatusApplication(applications.get(i));
+					int applicationId=applications.get(i);
+					out.println("<b>"+celebName+": </b>"+status);
+					//System.out.println(serv.getApplicationMessagingStatus(applicationId));
+					if(serv.getApplicationMessagingStatus(applicationId)==1){
+						%>
+						<a href="ChatForApplicant.jsp?applicationId=<% out.print(applicationId);%>">
+							<button>Go to Chat</button></a>
+						<% 
+					}
+					out.println("<br><br>");
+				}
 			}
+			else
+				out.println("No Applications yet");
 		}
 		catch(Exception e){
 			out.println("Error Occured");

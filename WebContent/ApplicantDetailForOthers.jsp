@@ -12,7 +12,12 @@
 <body align="center">
 	<%
 		try{
-			int applicantId=(Integer)session.getAttribute("applicantId");
+			int applicantId=-1;
+			Integer applicantID=(Integer)session.getAttribute("applicantId");
+			if(applicantID==null)
+				response.sendRedirect("http://localhost:8080/appointment/");
+			else
+				applicantId=applicantID;
 			Service serv=new Service();
 			Applicant applicant=serv.getApplicant(applicantId);
 			if(applicant!=null)

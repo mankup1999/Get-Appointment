@@ -10,7 +10,11 @@
 </head>
 <body>
 	<%
-		int celebId=Integer.parseInt(request.getParameter("celebId"));
+		int celebId=-1;
+		if(request.getParameter("celebId")==null)
+			response.sendRedirect("http://localhost:8080/appointment/");
+		else
+			celebId=Integer.parseInt(request.getParameter("celebId"));
 		session.setAttribute("celebId", celebId);
 		Service serv=new Service();
 		Celebrity celeb=serv.getCelebrity(celebId);
@@ -19,7 +23,7 @@
 	%>
 	<form action="applyAppointment" method="post">
 		Why do you want appointment?(100-300 words)<br>
-		<textarea rows="10" cols="100" name="intent"></textarea><br>
+		<textarea rows="10" cols="100" name="intent" required></textarea><br>
 		<input type="submit" value="apply">
 	</form>
 </body>

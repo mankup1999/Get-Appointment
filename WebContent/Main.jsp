@@ -11,16 +11,23 @@
 </head>
 <body>
 	<%
-		int applicantId=(Integer)session.getAttribute("applicantId");
+		int applicantId=-1;
+		Integer applicantID=(Integer)session.getAttribute("applicantId");
+		if(applicantID!=null)
+			applicantId=applicantID;
 		Service serv=new Service();
 		ArrayList<Integer> verifiedCelebs=serv.getVerifiedCelebs();
+		if(applicantID==null)
+			response.sendRedirect("http://localhost:8080/appointment/");
+		if(applicantID!=null){
 	%>
 	<div align="right">
 		<a href="http://localhost:8080/appointment/ApplicantDetail.jsp"><h2>User</h2></a>
 	</div>
 	<div align="center">
 		<%
-			if(verifiedCelebs!=null){
+		}
+			if(applicantID!=null && verifiedCelebs!=null){
 				int n=verifiedCelebs.size();
 				out.println("<h1>Celebs Available</h1>");
 				for(int i=0;i<n;i++){

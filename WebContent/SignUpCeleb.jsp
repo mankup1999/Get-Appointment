@@ -8,14 +8,13 @@
 </head>
 <body>
 	<form method="post" action="InsertCeleb">
-	Name : <input type="text" name="name"><br/>
-	Email : <input type="text" name="email"><br/>
-	Mob : <input type="text" name="mob"><br/>
-	Username : <input type="text" name="username"><br/>
-	Password : <input type="text" name="password"><br/>
-	Confirm Password : <input type="password" name="conf_password"><br/>
-	Need Referral : <input type="text" name="needReferral"><br/>
-	Office Address : <input type="text" name="officeAddress"><br/>
+	Name : <input type="text" name="name" required><br/>
+	Email : <input type="text" name="email" required><br/>
+	Mob : <input type="text" name="mob" required><br/>
+	Username : <input type="text" name="username" required><br/>
+	Password : <input type="text" name="password" required><br/>
+	Confirm Password : <input type="password" name="conf_password" required><br/>
+	Office Address : <input type="text" name="officeAddress" required><br/>
 	<input type="submit" name="Sign Up"><br/>
 	</form>
 </body>

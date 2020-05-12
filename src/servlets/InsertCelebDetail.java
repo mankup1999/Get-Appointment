@@ -47,7 +47,7 @@ public class InsertCelebDetail extends HttpServlet {
 		long mob=Long.parseLong(request.getParameter("mob"));
 		String username=request.getParameter("username");
 		String password=request.getParameter("password");
-		String needReferral=request.getParameter("needReferral");
+		String needReferral=null;
 		String officeAddress=request.getParameter("officeAddress");
 		Service serv=new Service();
 		int celebId=serv.getNewCelebId();
@@ -63,6 +63,8 @@ public class InsertCelebDetail extends HttpServlet {
 		celeb.setOfficeAddress(officeAddress);
 		celeb.setPhoto(null);
 		celeb.setVerifyStatus("0");
+		
+		//System.out.println(celeb.toString());
 		
 		int statusAddCeleb=serv.insertCeleb(celeb);
 		int statusLoginCeleb=-1;

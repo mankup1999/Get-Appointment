@@ -8,12 +8,12 @@
 </head>
 <body>
 	<form method="post" action="InsertApplicant">
-	Name : <input type="text" name="name"><br/>
-	Email : <input type="text" name="email"><br/>
-	Mob : <input type="text" name="mob"><br/>
-	Username : <input type="text" name="username"><br/>
-	Password : <input type="text" name="password"><br/>
-	Confirm Password : <input type="password" name="conf_password"><br/>
+	Name : <input type="text" name="name" required><br/>
+	Email : <input type="text" name="email" required><br/>
+	Mob : <input type="text" name="mob" required><br/>
+	Username : <input type="text" name="username" required><br/>
+	Password : <input type="text" name="password" required><br/>
+	Confirm Password : <input type="password" name="conf_password" required><br/>
 	<input type="submit" name="Sign Up"><br/>
 	</form>
 

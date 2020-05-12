@@ -11,16 +11,22 @@
 <body align="center">
 	<h1>Celeb Details:</h1>
 	<%
-		String detail=session.getAttribute("celebDetail").toString();
-		detail=detail.substring(detail.indexOf("[")+1,detail.lastIndexOf("]"));
-		String[] details=detail.split(", ");
-		for(String x:details){
-			String[] y=x.split("=");
-			switch(y[0]){
-				case "name":out.println("<b>Name: </b>"+y[1]+"<br>");break;
-				case "email":out.println("<b>Email: </b>"+y[1]+"<br>");break;
-				case "mob":out.println("<b>Phone: </b>"+y[1]+"<br>");break;
-				case "officeAddress":out.println("<b>Office Addr: </b>"+y[1]+"<br>");break;
+	    Object abc=session.getAttribute("celebDetail");
+		//System.out.println(abc);
+		if(abc==null)
+				response.sendRedirect("http://localhost:8080/appointment/");
+		else{
+			String detail=session.getAttribute("celebDetail").toString();
+			detail=detail.substring(detail.indexOf("[")+1,detail.lastIndexOf("]"));
+			String[] details=detail.split(", ");
+			for(String x:details){
+				String[] y=x.split("=");
+				switch(y[0]){
+					case "name":out.println("<b>Name: </b>"+y[1]+"<br>");break;
+					case "email":out.println("<b>Email: </b>"+y[1]+"<br>");break;
+					case "mob":out.println("<b>Phone: </b>"+y[1]+"<br>");break;
+					case "officeAddress":out.println("<b>Office Addr: </b>"+y[1]+"<br>");break;
+				}
 			}
 		}
 		
