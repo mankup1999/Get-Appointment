@@ -42,7 +42,11 @@
 					int applicantId=serv.getApplicantId(applicationId);
 					String applicantName=serv.getApplicant(applicantId).getName();
 					out.println(i+1+". ");
-					out.println("<a href='http://localhost:8080/appointment/ApplicantDetailForOthers.jsp'>"+applicantName+": </a>");
+					//out.println("<a href='http://localhost:8080/appointment/ApplicantDetailForOthers.jsp'>"+applicantName+": </a>");
+					%>
+						<a href="ApplicantDetailForOthers.jsp?applicantId=<% out.print(applicantId);%>">
+							<%=applicantName  %></a>
+					<% 
 					out.println("\""+intent+"\"<br>");
 					String status=serv.getStatusApplication(applicationId);
 					out.println("<b>"+status+"</b>");

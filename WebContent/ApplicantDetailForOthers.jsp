@@ -13,11 +13,11 @@
 	<%
 		try{
 			int applicantId=-1;
-			Integer applicantID=(Integer)session.getAttribute("applicantId");
-			if(applicantID==null)
+			String applicantID=(String)request.getParameter("applicantId");
+			if(applicantID==null || session.getAttribute("celebDetail")==null)
 				response.sendRedirect("http://localhost:8080/appointment/");
 			else
-				applicantId=applicantID;
+				applicantId=Integer.parseInt(applicantID);
 			Service serv=new Service();
 			Applicant applicant=serv.getApplicant(applicantId);
 			if(applicant!=null)
