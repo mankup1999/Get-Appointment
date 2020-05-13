@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import co.manku.service.Service;
 
@@ -30,14 +31,19 @@ public class approveApplication extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		int applicationId=Integer.parseInt(request.getParameter("applicationId"));
-		Service serv=new Service();
-		int status=serv.updateApplicationStatus(applicationId);
-		if(status!=-1) {
-			response.sendRedirect("http://localhost:8080/appointment/CelebDetailForOthers.jsp");
+		HttpSession session=request.getSession();
+		if(session.getAttribute("applicantID")==null)
+			response.sendRedirect("http://localhost:8080/appointment/");
+		else {
+			int applicationId=Integer.parseInt(request.getParameter("applicationId"));
+			Service serv=new Service();
+			int status=serv.updateApplicationStatus(applicationId);
+			if(status!=-1) {
+				response.sendRedirect("http://localhost:8080/appointment/CelebDetailForOthers.jsp");
+			}
+			else
+				response.getWriter().println("Error<Unknown>");
 		}
-		else
-			response.getWriter().println("Error<Unknown>");
 	}
 
 	/**

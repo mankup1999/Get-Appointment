@@ -10,6 +10,12 @@
 <title>Applicant Detail</title>
 </head>
 <body align="center">
+	<form action="ApplicantLogout">
+		<input type="submit" value="Logout">
+	</form>
+	<form action="ApplicantBack">
+		<input type="submit" value="Back">
+	</form>
 	<%
 		try{
 			int applicantId=-1;

@@ -43,8 +43,7 @@ public class sendToApplicant extends HttpServlet {
 		System.out.println(session.getAttribute("celebDetail"));
 		System.out.println(request.getParameter("applicationId"));
 		if(session.getAttribute("celebDetail")==null || request.getParameter("applicationId")==null)
-			//response.sendRedirect("http://localhost:8080/appointment/");
-		{}
+			response.sendRedirect("http://localhost:8080/appointment/");
 		else {
 			int applicationId=Integer.parseInt(request.getParameter("applicationId"));
 			String data=request.getParameter("data");

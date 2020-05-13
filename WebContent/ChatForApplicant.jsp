@@ -12,6 +12,12 @@
 <title>Chat For Applicant</title>
 </head>
 <body>
+	<form action="ApplicantLogout">
+		<input type="submit" value="Logout">
+	</form>
+	<form action="ApplicantBack">
+		<input type="submit" value="Back">
+	</form>
 	<%
 		//System.out.println(session.getAttribute("applicantId"));
 		//System.out.println(request.getParameter("applicationId"));

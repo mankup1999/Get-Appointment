@@ -31,6 +31,9 @@ public class applyAppointment extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		HttpSession session=request.getSession();
+		if(session.getAttribute("applicantID")==null)
+			response.sendRedirect("http://localhost:8080/appointment/");
 	}
 
 	/**
@@ -41,6 +44,9 @@ public class applyAppointment extends HttpServlet {
 		doGet(request, response);
 		
 		HttpSession session=request.getSession();
+		if(session.getAttribute("applicantId")==null)
+				response.sendRedirect("http://localhost:8080/appointment/");
+		else {
 			int applicantId=-1;
 			try {
 				applicantId=(Integer)session.getAttribute("applicantId");
@@ -67,6 +73,7 @@ public class applyAppointment extends HttpServlet {
 			catch(Exception ex) {
 				System.out.println(ex);
 			}
+		}
 		}
 
 }

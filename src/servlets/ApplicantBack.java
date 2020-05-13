@@ -8,19 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import co.manku.service.Service;
-
 /**
- * Servlet implementation class enableMessaging
+ * Servlet implementation class ApplicantBack
  */
-@WebServlet("/enableMessaging")
-public class enableMessaging extends HttpServlet {
+@WebServlet("/ApplicantBack")
+public class ApplicantBack extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public enableMessaging() {
+    public ApplicantBack() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,18 +30,10 @@ public class enableMessaging extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession session=request.getSession();
-		if(session.getAttribute("celebDetail")==null)
+		if(session.getAttribute("applicantId")==null)
 			response.sendRedirect("http://localhost:8080/appointment/");
-		else {
-			int applicationId=Integer.parseInt(request.getParameter("applicationId"));
-			Service serv=new Service();
-			int status=serv.updateApplicationMessaging(applicationId);
-			if(status>0) {
-				response.sendRedirect("http://localhost:8080/appointment/CelebDetailForOthers.jsp");
-			}
-			else
-				response.getWriter().println("Error<Unknown>");
-		}
+		else
+			response.sendRedirect("http://localhost:8080/appointment/ApplicantDetail.jsp");
 	}
 
 	/**

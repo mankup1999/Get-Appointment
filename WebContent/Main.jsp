@@ -10,6 +10,9 @@
 <title>Get Appointment</title>
 </head>
 <body>
+	<form action="ApplicantLogout">
+		<input type="submit" value="Logout">
+	</form>
 	<%
 		int applicantId=-1;
 		Integer applicantID=(Integer)session.getAttribute("applicantId");

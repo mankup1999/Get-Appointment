@@ -9,6 +9,12 @@
 <title>Apply Form</title>
 </head>
 <body>
+	<form action="ApplicantLogout">
+		<input type="submit" value="Logout">
+	</form>
+	<form action="ApplicantBack">
+		<input type="submit" value="Back">
+	</form>
 	<%
 		int celebId=-1;
 		if(request.getParameter("celebId")==null)

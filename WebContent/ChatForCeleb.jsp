@@ -11,6 +11,12 @@
 <title>Chat For Celeb</title>
 </head>
 <body>
+	<form action="CelebLogout">
+		<input type="submit" value="Logout">
+	</form>
+	<form action="CelebBack">
+		<input type="submit" value="Back">
+	</form>
 	<%
 		//System.out.println(session.getAttribute("celebDetail"));
 		//System.out.println(request.getParameter("applicationId"));

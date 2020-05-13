@@ -9,6 +9,9 @@
 <title>Celeb Details</title>
 </head>
 <body>
+	<form action="CelebLogout">
+		<input type="submit" value="Logout">
+	</form>
 	<h1>Celeb Details:</h1>
 	<%
 		Object abc=session.getAttribute("celebDetail");
