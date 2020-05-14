@@ -80,7 +80,7 @@ public class InsertCelebDetail extends HttpServlet {
 			HttpSession session=request.getSession();
 			String celebDetail=serv.getCelebrity(celebId).toString();
 			session.setAttribute("celebDetail", celebDetail);
-			response.sendRedirect("http://localhost:8080/appointment/CelebDetail.jsp");
+			response.sendRedirect("http://localhost:8080/appointment/CelebDetailForOthers.jsp");
 		}
 		
 		else {

@@ -32,7 +32,7 @@ public class approveApplication extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession session=request.getSession();
-		if(session.getAttribute("applicantID")==null)
+		if(session.getAttribute("celebId")==null)
 			response.sendRedirect("http://localhost:8080/appointment/");
 		else {
 			int applicationId=Integer.parseInt(request.getParameter("applicationId"));

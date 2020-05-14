@@ -1,29 +1,23 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.Enumeration;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import co.manku.main.Celebrity;
-import co.manku.service.Service;
 
 /**
- * Servlet implementation class ShowCeleb
+ * Servlet implementation class nameValidate
  */
-@WebServlet("/showCeleb")
-public class ShowCeleb extends HttpServlet {
+@WebServlet("/nameValidate")
+public class nameValidate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShowCeleb() {
+    public nameValidate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,7 +27,28 @@ public class ShowCeleb extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		String name=request.getParameter("name");
+		if(name==null)
+			response.sendRedirect("http://localhost:8080/appointment/");
+		int n=name.length();
+		if(n==0) {
+			//response.getWriter().print("");
+		}
+		else {
+			boolean flag=true;
+			for(int i=0;i<n;i++) {
+				char c=name.charAt(i);
+				if((c>='A' && c<='Z') || (c>='a' && c<='z') || c==' ')
+				{}
+				else {
+					flag=false;
+					break;
+				}
+			}
+			if(!flag)
+				response.getWriter().print("Name must contain only alphabets");
+		}
 	}
 
 	/**
@@ -41,19 +56,7 @@ public class ShowCeleb extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
-		Enumeration<String> ex=request.getParameterNames();
-		int celebId=-1;
-		if(ex.hasMoreElements()) {
-			celebId=Integer.parseInt(ex.nextElement());
-		}
-		Service serv=new Service();
-		Celebrity celeb=serv.getCelebrity(celebId);
-		if(celeb!=null) {
-			HttpSession session=request.getSession();
-			session.setAttribute("celebDetail", celeb.toString());
-			response.sendRedirect("http://localhost:8080/appointment/CelebDetailForAdmin.jsp");
-		}
+		doGet(request, response);
 	}
 
 }

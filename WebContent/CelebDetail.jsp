@@ -12,9 +12,7 @@
 	<form action="ApplicantLogout">
 		<input type="submit" value="Logout">
 	</form>
-	<form action="ApplicantBack">
-		<input type="submit" value="Back">
-	</form>
+	<button><a href="http://localhost:8080/appointment/Main.jsp">Back</a></button>
 	<h1>Celeb Details:</h1>
 	<%
 	    Object abc=session.getAttribute("celebDetail");

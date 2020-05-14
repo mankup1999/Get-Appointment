@@ -1,29 +1,23 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.Enumeration;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import co.manku.main.Celebrity;
-import co.manku.service.Service;
 
 /**
- * Servlet implementation class ShowCeleb
+ * Servlet implementation class mobileValidate
  */
-@WebServlet("/showCeleb")
-public class ShowCeleb extends HttpServlet {
+@WebServlet("/mobileValidate")
+public class mobileValidate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShowCeleb() {
+    public mobileValidate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,7 +27,21 @@ public class ShowCeleb extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		String mob=request.getParameter("mob");
+		if(mob!=null) {
+			int n=mob.length();
+			boolean flag=false;
+			for(int i=0;i<n;i++)
+				if(!(mob.charAt(i)>='0' && mob.charAt(i)<='9')) {
+					flag=true;
+					break;
+				}
+			if(flag)
+				response.getWriter().print("Only digits are allowed");
+			else if(n!=10)
+				response.getWriter().print("Enter 10-digit mobile number");
+		}
 	}
 
 	/**
@@ -41,19 +49,7 @@ public class ShowCeleb extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
-		Enumeration<String> ex=request.getParameterNames();
-		int celebId=-1;
-		if(ex.hasMoreElements()) {
-			celebId=Integer.parseInt(ex.nextElement());
-		}
-		Service serv=new Service();
-		Celebrity celeb=serv.getCelebrity(celebId);
-		if(celeb!=null) {
-			HttpSession session=request.getSession();
-			session.setAttribute("celebDetail", celeb.toString());
-			response.sendRedirect("http://localhost:8080/appointment/CelebDetailForAdmin.jsp");
-		}
+		doGet(request, response);
 	}
 
 }
