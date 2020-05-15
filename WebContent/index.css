@@ -1,0 +1,27 @@
+#body{
+	width: 400px;
+	height: 200px;
+	border: 1px blue solid;
+	margin: 150px 50px 50px 450px;
+	padding: 50px 50px 10px 50px;
+}
+
+#welcome{
+	font-size: 30px;
+	opacity: 0.4;
+	color: red;
+}
+
+#label{
+	padding-top: 20px;
+	color: green;
+	opacity: 0.8;
+}
+
+.a{
+	padding-top: 20px;
+	text-decoration: none;
+	color: black;
+	color: blue;
+	opacity: 0.7;
+}

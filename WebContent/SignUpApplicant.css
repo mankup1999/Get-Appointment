@@ -1,0 +1,35 @@
+#body{
+	width: 800px;
+	height: 250px;
+	border: 1px blue hidden;
+	margin: 150px 50px 50px 450px;
+	padding: 10px 50px 10px 50px;
+}
+
+#title{
+	margin-left: 60px;
+	font-size: 25px;
+	color: brown;
+	opacity: .5;
+}
+
+.th1{
+	opacity: .5;
+	color: green;
+}
+.th2{
+	opacity: .9;
+	color: black;
+	background-color: powderblue;
+	border-width: 0px;
+}
+.th3{
+	color: red;
+}
+
+
+#login{
+	width: 100px;
+	color: red;
+	background-color: cyan;
+}

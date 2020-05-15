@@ -5,18 +5,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Celebrity Login</title>
+<link rel="stylesheet" href="ApplicantCredentials.css">
 </head>
 
-<body>
-	<button><a href="http://localhost:8080/appointment/">Main Page</a></button>
+<body id="body">
+	<label id="title">Celeb Login</label><br>
+	<button><a class="a" href="http://localhost:8080/appointment/">Main Page</a></button>
+	<br>
+	<br>
 	<form method="post" action="validCeleb">
-	Username:<input type="text" name="username" required><br>
-	Password:<input type="password" name="password" required><br>
-	ReCaptcha:
-	<label><span id="num1"></span>+<span id="num2"></span></label>=<input type=text id="result" onkeyup="checkResult(this.value)" required>
-	<br><input type="submit" value="Login" id="submit_id">
-	</form>
-	New user?<a href="http://localhost:8080/appointment/SignUpCeleb.jsp">Register here</a>
+	<table>
+	<tr><th class="th1">Username:</th><th ><input class="th2" type="text" name="username" required></th></tr>
+	<tr><th class="th1">Password:</th><th ><input class="th2" type="password" name="password" required></th></tr>
+	<tr><th class="th1">  solve:
+	<label><span id="num1"></span>+<span id="num2"></span></label>=</th><th><input class="th2" type=text id="result" onkeyup="checkResult(this.value)" required>
+	</th></tr>
+	<tr><th colspan="2"><input type="submit" value="Login" id="submit_id"></th></tr>
+	</table>
+	</form><br>
+	<label id="new">New user?</label><a class="a" href="http://localhost:8080/appointment/SignUpCeleb.jsp">Register here</a>
 </body>
 <script>
 		var num1=Math.floor(Math.random()*100+1);

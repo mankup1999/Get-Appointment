@@ -8,11 +8,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Get Appointment</title>
+<link rel="stylesheet" href="Main.css" >
 </head>
-<body>
-	<form action="ApplicantLogout">
-		<input type="submit" value="Logout">
+<body id="body">
+	<div id="div1">
+	<form  action="ApplicantLogout">
+		<input id="logout" type="submit" value="Logout">
 	</form>
+	</div>
 	<%
 		int applicantId=-1;
 		Integer applicantID=(Integer)session.getAttribute("applicantId");
@@ -25,34 +28,44 @@
 		if(applicantID!=null){
 	%>
 	<div align="right">
-		<a href="http://localhost:8080/appointment/ApplicantDetail.jsp"><h2>User</h2></a>
+	<a class="a" href="http://localhost:8080/appointment/ApplicantDetail.jsp"><button id="user" >User</button></a>
 	</div>
+	<br>
+	<br>
 	<div align="center">
 		<%
 		}
 			if(applicantID!=null && verifiedCelebs!=null){
 				%>
-				Search celebs: <input type="text" onkeyup="searchCeleb(this.value)"><br>
+				<label id="search">Search celebs: </label><input type="text" onkeyup="searchCeleb(this.value)"><br>
 				<div id="suggestedCeleb">
 				</div>
+				<br>
+				<br><br>
 				<% 
 				int n=verifiedCelebs.size();
-				out.println("<h1>Celebs Available</h1>");
+				out.println("<b id='celebAvailable'>Celebs Available</b><br>");
+				%>
+				<table>
+				<% 
 				for(int i=0;i<n;i++){
 					int celebId=verifiedCelebs.get(i);
 					Celebrity celeb=serv.getCelebrity(celebId);
 					String name=celeb.getName();
 					%>
-							<a href="showCelebGet?celebId=<% out.print(celeb.getCelebId()); %>">
-							<b><%= name %>:</b></a>
-							<a href="applyForm.jsp?celebId=<% out.print(celeb.getCelebId()); %>">
-							<b>Apply</b>
-							</a>
-							<br>
-							<br>
+						<tr>
+							<th><a class="a" href="showCelebGet?celebId=<% out.print(celeb.getCelebId()); %>">
+							<b id="name" ><%= name %>:</b></a></th>
+							<th><a class="a" href="applyForm.jsp?celebId=<% out.print(celeb.getCelebId()); %>">
+							<button id="apply" >Apply</button>
+							</a></th>
+						</tr>
 					<% 
 			
 				}
+				%>
+				</table>
+				<% 
 			}
 		%>
 	</div>
