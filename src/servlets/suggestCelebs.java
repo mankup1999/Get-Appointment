@@ -1,29 +1,28 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.Enumeration;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import co.manku.main.Celebrity;
 import co.manku.service.Service;
 
 /**
- * Servlet implementation class ShowCelebGet
+ * Servlet implementation class suggestCelebs
  */
-@WebServlet("/showCelebGet")
-public class ShowCelebGet extends HttpServlet {
+@WebServlet("/suggestCelebs")
+public class suggestCelebs extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShowCelebGet() {
+    public suggestCelebs() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,14 +33,27 @@ public class ShowCelebGet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		int celebId=Integer.parseInt(request.getParameter("celebId"));
-		Service serv=new Service();
-		Celebrity celeb=serv.getCelebrity(celebId);
-		if(celeb!=null) {
-			HttpSession session=request.getSession();
-			session.setAttribute("celebDetail", celeb.toString());
-			session.setAttribute("celebId", celebId);
-			response.sendRedirect("http://localhost:8080/appointment/CelebDetail.jsp");
+		String name=request.getParameter("q");
+		if(name!=null) {
+			int n=name.length();
+			PrintWriter out=response.getWriter();
+			if(n!=0) {
+				Service serv=new Service();
+				ArrayList<Integer> celebID=serv.getVerifiedCelebs();
+				ArrayList<String> celebName=new ArrayList<String>();
+				int celebSize=celebID.size();
+				for(int i=0;i<celebSize;i++) {
+					celebName.add(serv.getCelebrity(celebID.get(i)).getName());
+				}
+				for(int i=0;i<celebSize;i++) {
+					int celebId=celebID.get(i);
+					String celName=celebName.get(i);
+					if(name.equalsIgnoreCase(celName.substring(0,n))) {
+						out.print("<a href='showCelebGet?celebId="+celebId+"'><b>"+celName+"</b></a>"+"<br>");
+						//System.out.println("<a href='showCelebGet?celebId="+celebId+"'><b>"+celName+"</b></a>"+"<br>");
+					}
+				}
+			}
 		}
 	}
 

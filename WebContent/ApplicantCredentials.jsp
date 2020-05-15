@@ -7,6 +7,7 @@
 <title>Applicant Login</title>
 </head>
 <body>
+	<button><a href="http://localhost:8080/appointment/">Main Page</a></button>
 	<form method="post" action="validApplicant">
 	Username:<input type="text" name="username" required><br>
 	Password:<input type="password" name="password" required><br>

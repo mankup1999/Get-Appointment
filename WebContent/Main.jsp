@@ -31,6 +31,11 @@
 		<%
 		}
 			if(applicantID!=null && verifiedCelebs!=null){
+				%>
+				Search celebs: <input type="text" onkeyup="searchCeleb(this.value)"><br>
+				<div id="suggestedCeleb">
+				</div>
+				<% 
 				int n=verifiedCelebs.size();
 				out.println("<h1>Celebs Available</h1>");
 				for(int i=0;i<n;i++){
@@ -52,4 +57,6 @@
 		%>
 	</div>
 </body>
+	<script src="celebSuggestion.js">
+	</script>
 </html>

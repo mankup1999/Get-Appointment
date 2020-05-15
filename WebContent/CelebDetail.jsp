@@ -29,8 +29,16 @@
 					case "name":out.println("<b>Name: </b>"+y[1]+"<br>");break;
 					case "email":out.println("<b>Email: </b>"+y[1]+"<br>");break;
 					case "mob":out.println("<b>Phone: </b>"+y[1]+"<br>");break;
-					case "officeAddress":out.println("<b>Office Addr: </b>"+y[1]+"<br>");break;
+					case "officeAddress":out.println("<b>Office Addr: </b>"+y[1]+"<br><br>");break;
 				}
+			}
+			if(session.getAttribute("celebId")!=null){
+				int celebId=(Integer)session.getAttribute("celebId");
+				%>
+					<button><a href="applyForm.jsp?celebId=<% out.print(celebId); %>">
+					<b>Apply</b>
+					</a></button>
+				<% 
 			}
 		}
 		
