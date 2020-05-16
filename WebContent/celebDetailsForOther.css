@@ -1,0 +1,78 @@
+#body{
+	margin: 50px 50px 50px 50px;
+	border: 1px blue none;
+}
+
+#logout{
+	margin-left:20px;
+	margin-top: 20px;
+	border-radius: 40px;
+	color: green;
+	width: 100px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#div1{
+	float: left;
+	background-color: lightblue;
+	margin-left: 40px;
+	margin-top: 20px;
+	border-radius: 40px;
+	padding: 10px 10px 10px 10px;
+}
+
+#div2{
+	float: left;
+	background-color: lightblue;
+	margin-left: 50px;
+	margin-top: 20px;
+	padding: 0px 10px 10px 10px;
+	border-radius: 10px;
+}
+
+#title{
+	color: green;
+	opacity: .4;
+	font-size: 40px;
+}
+
+.b1{
+	color: blue;
+	font-size: 20px;
+}
+
+.span1{
+	color: red;
+	opacity: .5;
+	
+}
+
+#anch1{
+	text-decoration: none;
+	color: brown;
+	opacity: .3;
+	font-size: 20px;
+	
+}
+
+#list{
+	margin-left: 200px;
+	font-size: 30px;
+	color: brown;
+	opacity: .6;
+}
+
+#span2{
+	background-color: yellow;
+}
+
+#status{
+	font-size: 20px;
+	color: orange;
+}
+
+.anch2{
+	color: red;
+	border-style: none;
+}

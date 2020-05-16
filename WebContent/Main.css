@@ -1,7 +1,4 @@
 #body{
-	width: 800px;
-	height: 500px;
-	border: 1px blue solid;
 	margin: 20px 5px 20px 220px;
 	padding: 50px 50px 10px 50px;
 }
@@ -67,4 +64,9 @@
 	color: black;
 	border-radius: 3px;
 	background-color: powderblue;
+}
+
+#suggestedCeleb{
+	margin-left: 20px;
+	margin-top: 20px;
 }

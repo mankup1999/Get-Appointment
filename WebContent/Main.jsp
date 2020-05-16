@@ -10,7 +10,7 @@
 <title>Get Appointment</title>
 <link rel="stylesheet" href="Main.css" >
 </head>
-<body id="body">
+<body id="body" style="border-style:hidden;margin-right:200px;">
 	<div id="div1">
 	<form  action="ApplicantLogout">
 		<input id="logout" type="submit" value="Logout">

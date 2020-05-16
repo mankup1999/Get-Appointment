@@ -8,14 +8,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Applicant Detail</title>
+<link rel="stylesheet" href="ApplicantDetailForOthers.css">
 </head>
-<body align="center">
+<body id="body">
+	<div id=div1>
 	<form action="CelebLogout">
-		<input type="submit" value="Logout">
+		<input  class="anch1" type="submit" value="Logout">
 	</form>
+	</div>
+	<div id="div2">
 	<form action="CelebBack">
-		<input type="submit" value="Back">
+		<input class="anch1" type="submit" value="Back">
 	</form>
+	</div>
 	<%
 		try{
 			int applicantId=-1;
@@ -26,27 +31,30 @@
 				applicantId=Integer.parseInt(applicantID);
 			Service serv=new Service();
 			Applicant applicant=serv.getApplicant(applicantId);
+			%>
+			<% 
 			if(applicant!=null)
-				out.println("<h1>Applicant Details</h1>");
+				out.println("<br><br><br><b id='title'>Applicant Details</b><br><br>");
 					%>
 					<table align="center">
 						<tr>
-						<th>Name: </th>
-						<td><%= applicant.getName() %></td>
+						<th class="th1">Name: </th>
+						<td class="th2"><%= applicant.getName() %></td>
 						</tr>
 						<tr>
-						<th>Email: </th>
-						<td><%= applicant.getEmail() %></td>
+						<th class="th1">Email: </th>
+						<td class="th2"><%= applicant.getEmail() %></td>
 						</tr>
 						<tr>
-						<th>Mob: </th>
-						<td><%= applicant.getMob() %></td>
+						<th class="th1">Mob: </th>
+						<td class="th2"><%= applicant.getMob() %></td>
 						</tr>
 						<tr>
-						<th>Address: </th>
-						<td><%= applicant.getAddress() %></td>
+						<th class="th1">Address: </th>
+						<td class="th2"><%= applicant.getAddress() %></td>
 						</tr>
 					</table>
+					
 					<%
 		}
 		catch(Exception e){

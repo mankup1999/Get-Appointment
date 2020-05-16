@@ -35,7 +35,7 @@ public class usernameValidate extends HttpServlet {
 			PrintWriter out=response.getWriter();
 			int n=username.length();
 			if(n<6)
-				out.print("Username must contain atleast 6 letters");
+				out.print("<span style='color:red;opacity:.4;font-size:12px;'>Username must contain atleast 6 letters</span>");
 		}
 	}
 	

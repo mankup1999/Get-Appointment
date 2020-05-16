@@ -7,15 +7,15 @@
 <title>Applicant Login</title>
 <link rel="stylesheet" href="ApplicantCredentials.css">
 </head>
-<body id="body">
+<body id="body" style="margin-left:450px;margin-top:200px;">
 	<label id="title">Applicant Login</label><br>
 	<button><a class="a" href="http://localhost:8080/appointment/">Main Page</a></button>
 	<br>
 	<br>
 	<form method="post" action="validApplicant">
 	<table>
-	<tr><th class="th1">Username:</th><th ><input class="th2" type="text" name="username" required></th></tr>
-	<tr><th class="th1">Password:</th><th ><input class="th2" type="password" name="password" required></th></tr>
+	<tr><th class="th1">Username:</th><th ><input class="th2" type="text" name="username" onkeyup="myUsername(this.value)" required></th><th id="username"></th></tr>
+	<tr><th class="th1">Password:</th><th ><input class="th2" type="password" name="password" onkeyup="myPassword(this.value)" required></th><th id="password"></th></tr>
 	<tr><th class="th1">  solve:
 	<label><span id="num1"></span>+<span id="num2"></span></label>=</th><th><input class="th2" type=text id="result" onkeyup="checkResult(this.value)" required>
 	</th></tr>
@@ -41,6 +41,43 @@
 				else
 					document.getElementById("submit_id").disabled=false;
 					
+			}
+		}
+		function myUsername(str){
+			if(str.length==0){
+				document.getElementById("username").innerHTML="";
+				return;
+			}
+			else{
+				var xmlhttp=new XMLHttpRequest();
+				xmlhttp.onreadystatechange=function(){
+					if(this.readyState==4 && this.status==200){
+						document.getElementById("username").innerHTML=this.responseText;
+						checkResult(str);
+					}
+				};
+				
+				xmlhttp.open("GET","http://localhost:8080/appointment/usernameValidate?username="+str,true);
+				xmlhttp.send();
+				
+			}
+		}
+		function myPassword(str){
+			if(str.length==0){
+				document.getElementById("password").innerHTML="";
+				return;
+			}
+			else{
+				    var xmlhttp=new XMLHttpRequest();
+				    xmlhttp.onreadystatechange=function(){
+					if(this.readyState==4 && this.status==200){
+						document.getElementById("password").innerHTML=this.responseText;
+						checkResult(str);
+					}
+				};
+				
+				xmlhttp.open("GET","http://localhost:8080/appointment/passwordValidate?password="+str,true);
+				xmlhttp.send();
 			}
 		}
 	</script>

@@ -10,14 +10,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Chat For Applicant</title>
+<link rel="stylesheet" href="ChatForApplicant.css"> 
 </head>
-<body>
+<body id="body">
+	<div id="div1">
 	<form action="ApplicantLogout">
-		<input type="submit" value="Logout">
+		<input class="input1" type="submit" value="Logout">
 	</form>
+	</div>
+	<div id="div2">
 	<form action="ApplicantBack">
-		<input type="submit" value="Back">
+		<input class="input1" type="submit" value="Back">
 	</form>
+	</div>
+	<br><br><br>
+	<div id="div3">
 	<%
 		//System.out.println(session.getAttribute("applicantId"));
 		//System.out.println(request.getParameter("applicationId"));
@@ -28,7 +35,16 @@
 			Service serv=new Service();
 			int celebId=serv.getCelebIdFromApplication(applicationId);
 			Celebrity celeb=serv.getCelebrity(celebId);
-			out.println(celeb.toString()+"<br><br>");
+			%>
+			<b class="title" align="center">Celeb Details:</b><br><br>
+			<span class="span1">Name:</span><span class="span2"><%= celeb.getName() %></span><br>
+			<span class="span1">Email:</span><span class="span2"><%= celeb.getEmail()%><span><br>
+			<span class="span1">Mob:</span><span class="span2"><%= celeb.getMob() %><span><br>
+			<span class="span1">Address:</span><span class="span2"><%= celeb.getOfficeAddress() %><span><br>
+			</div>
+			<div id="div4">
+			<b class="title">Chats:</b><br><br>
+			<% 
 			ArrayList<HashMap<String,String>> chats=serv.fetchChats(applicationId);
 			System.out.println(chats);
 			if(chats!=null){
@@ -38,8 +54,10 @@
 					if(!map.containsKey(type))
 						type="applicant";
 					String msg=(String)map.get(type);
-					
-					out.println("<b>"+type+":</b>"+msg+"<br>");
+					if(type.equalsIgnoreCase("applicant"))
+						out.println("<b id='b3'>You:"+msg+"</b><br>");
+					else
+						out.println("<b id='b4'>Celeb:"+msg+"</b><br>");
 				}
 			}
 		
@@ -47,8 +65,9 @@
 			<form action="sendToCeleb" method="post">
 				You:<input type="text" name="data" required>
 				<input type="hidden" name="applicationId" value="<%= applicationId %>">
-				<input type="submit" value="send">
+				<input id="send" type="submit" value=">>>">
 			</form>
+			</div>
 			<% 
 			
 		}

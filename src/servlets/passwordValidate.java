@@ -35,15 +35,15 @@ public class passwordValidate extends HttpServlet {
 			PrintWriter out=response.getWriter();
 			int n=username.length();
 			if(n<6)
-				out.print("Password must contain atleast 6 letters");
+				out.print("<span style='color:red;opacity:.4;font-size:12px;'>Password must contain atleast 6 letters</span>");
 			else if(!hasUpperCase(username,n))
-				out.print("Password must contain atleast 1 UpperCase letter");
+				out.print("<span style='color:red;opacity:.4;font-size:12px;'>Password must contain atleast 1 UpperCase letter</span>");
 			else if(!hasLowerCase(username,n))
-				out.print("Password must contain atleast 1 LowerCase letter");
+				out.print("<span style='color:red;opacity:.4;font-size:12px;'>Password must contain atleast 1 LowerCase letter</span>");
 			else if(!hasDigit(username, n))
-				out.print("Password must contain atleast 1 digit");
+				out.print("<span style='color:red;opacity:.4;font-size:12px;'>Password must contain atleast 1 digit</span>");
 			else if(!hasSpecial(username,n))
-				out.print("Password must contain atleast 1 special letter like @,#,$..");
+				out.print("<span style='color:red;opacity:.4;font-size:12px;'>Password must contain atleast 1 special letter like @,#,$..</span>");
 		}
 	}
 	

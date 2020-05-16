@@ -1,0 +1,44 @@
+#body{
+	margin: 100px 100px 30px 100px;
+	padding: 10px 10px 10px 10px;
+	border : 1px blue hidden;
+}
+
+#div1{
+	float:left;
+	margin-left: 450px;
+}
+
+#div2{
+	margin-right: 450px;
+	float:right;
+	
+}
+
+.anch1{
+	color: green;
+	opacity: .6;
+	font-size: 20px;
+}
+
+
+#title{
+	font-size: 30px;
+	color: red;
+	background-color: yellow;
+	opacity: .4;
+	margin-left: 450px
+}
+
+.th1{
+	background-color: yellow;
+	font-size: 20px;
+	color: red;
+	opacity: .7;
+}
+
+.th2{
+	color: blue;
+	font-size: 16px;
+}
+

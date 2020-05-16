@@ -1,0 +1,52 @@
+#body{
+	margin: 100px 100px 30px 100px;
+	padding: 10px 10px 10px 10px;
+	border : 1px blue hidden;
+}
+
+#div1{
+	margin-left: 400px;
+	float:left;
+}
+
+#div2{
+	float: right;
+	margin-right: 450px;
+	
+}
+
+.anch1{
+	color: green;
+	opacity: .6;
+	font-size: 20px;
+}
+
+
+#title{
+	font-size: 30px;
+	color: red;
+	background-color: yellow;
+	opacity: .4;
+	margin-left: 450px
+}
+
+.th1{
+	background-color: yellow;
+	font-size: 20px;
+	color: red;
+	opacity: .7;
+}
+
+.th2{
+	color: blue;
+	font-size: 16px;
+}
+
+#anch2{
+	text-decoration: none;
+	font-size: 20px;
+	color: green;
+	width: 50px;
+	heoght: 30px;
+}
+

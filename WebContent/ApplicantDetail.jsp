@@ -8,12 +8,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Applicant Detail</title>
+<link rel="stylesheet" href="ApplicantDetail.css">
 </head>
-<body align="center">
+<body id="body">
+	<div id="div1">
 	<form action="ApplicantLogout">
-		<input type="submit" value="Logout">
+		<input class="input1" type="submit" value="Logout">
 	</form>
-	<button><a href="http://localhost:8080/appointment/Main.jsp">Back</a></button>
+	</div>
+	<div id="div2"><button class="input1"><a style="text-decoration:none;color:red;opacity:.7;" href="http://localhost:8080/appointment/Main.jsp">Back</a></button></div>
+	<br><br>
+	<br><br><br>
 	<%
 		try{
 			int applicantId=-1;
@@ -25,28 +30,33 @@
 			Service serv=new Service();
 			Applicant applicant=serv.getApplicant(applicantId);
 			if(applicant!=null)
-				out.println("<h1>Applicant Details</h1>");
+				out.println("<br><b id='title'>Applicant Details</b><br><br><br><br>");
 					%>
+					<div id="div3">
 					<table align="center">
 						<tr>
-						<th>Name: </th>
-						<td><%= applicant.getName() %></td>
+						<th class="th1">Name: </th>
+						<td class="th2"><%= applicant.getName() %></td>
 						</tr>
 						<tr>
-						<th>Email: </th>
-						<td><%= applicant.getEmail() %></td>
+						<th class="th1">Email: </th>
+						<td class="th2"><%= applicant.getEmail() %></td>
 						</tr>
 						<tr>
-						<th>Mob: </th>
-						<td><%= applicant.getMob() %></td>
+						<th class="th1">Mob: </th>
+						<td class="th2"><%= applicant.getMob() %></td>
 						</tr>
 						<tr>
-						<th>Address: </th>
-						<td><%= applicant.getAddress() %></td>
+						<th class="th1">Address: </th>
+						<td class="th2"><%= applicant.getAddress() %></td>
 						</tr>
 					</table>
-					<%
-			out.println("<h2>"+"My Applications:"+"</h2>");
+					</div>
+					 
+					<div id="div4">
+					
+			<b style='font-size:25px;margin-left:80px;color:brown;opacity:.5;'>My Applications</b><br><br>
+					<% 
 			ArrayList<Integer> applications=serv.getApplicationList(applicantId);
 			if(applications!=null){
 				for(int i=0;i<applications.size();i++){
@@ -54,12 +64,12 @@
 					String celebName=serv.getCelebrity(celebId).getName();
 					String status=serv.getStatusApplication(applications.get(i));
 					int applicationId=applications.get(i);
-					out.println("<b>"+celebName+": </b>"+status);
+					out.println("<b id='name'>"+celebName+": </b><span style='color:red;font-size:20px;'>"+status+"</span>");
 					//System.out.println(serv.getApplicationMessagingStatus(applicationId));
 					if(serv.getApplicationMessagingStatus(applicationId)==1){
 						%>
 						<a href="ChatForApplicant.jsp?applicationId=<% out.print(applicationId);%>">
-							<button>Go to Chat</button></a>
+							<button id="an">Go to Chat</button></a>
 						<% 
 					}
 					out.println("<br><br>");
@@ -73,6 +83,7 @@
 		}
 		
 	%>
+	</div>
 
 </body>
 </html>

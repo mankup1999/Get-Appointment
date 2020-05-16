@@ -1,0 +1,79 @@
+#body{
+	margin: 20px 200px 50px 200px;
+	padding: 10px 10px 10px 10px;
+}
+
+#div1{
+	float:left;
+	padding: 10px 10px 10px 10px;
+}
+
+#div2{
+	float: right;
+	padding: 10px 10px 10px 10px;
+}
+
+.input1{
+	background-color: yellow;
+	color: blue;
+	opacity: .6;
+	border-radius: 5px;
+	font-size: 20px;
+	width: 100px;
+	height: 30px;
+}
+#send{
+	border-style: none;
+	color: red;
+	font-size: 20px;
+	background-color: yellow;
+}
+
+#div3{
+	float:left;
+	padding: 5px 5px 5px 5px;
+	border: 1px blue hidden;
+	border-radius: 20px;
+	background-color: powderblue;
+	width: 300px;
+	height: 150px;
+}
+
+.title{
+	margin-left: 50px;
+	font-size: 30px;
+	color: green;
+	opacity: .4;
+}
+.span1{
+	font-size: 18px;
+	color: brown;
+	opacity: .6;
+}
+.span2{
+	font-size: 18px;
+	color: blue;
+}
+
+#div4{
+	float:right;
+	margin-top: 40px;
+	margin-right: 150px;
+	padding: 10px 10px 10px 10px;
+	background-color: yellow;
+}
+
+#b3{
+	margin-left: 100px;
+	background-color: lightblue;
+	color: blue;
+	font-size: 15px;
+	opacity: .9;
+	border-radius: 5px;
+}
+#b4{
+	color: green;
+	font-size: 15px;
+	opacity: .9;
+	border-radius: 5px;
+}

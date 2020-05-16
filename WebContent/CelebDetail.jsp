@@ -7,13 +7,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Celeb Details</title>
+<link rel="stylesheet" href="CelebDetail.css" >
 </head>
-<body align="center">
+<body id="body">
+	<div id=div1>
 	<form action="ApplicantLogout">
-		<input type="submit" value="Logout">
+		<input class="anch1" type="submit" value="Logout">
 	</form>
-	<button><a href="http://localhost:8080/appointment/Main.jsp">Back</a></button>
-	<h1>Celeb Details:</h1>
+	</div>
+	<div id="div2">
+	<button class="anch1"><a style="text-decoration:none;" href="http://localhost:8080/appointment/Main.jsp">Back</a></button>
+	</div>
+	<br><br><br>
+	<b id="title">Celeb Details:</b><br><br>
+
 	<%
 	    Object abc=session.getAttribute("celebDetail");
 		//System.out.println(abc);
@@ -25,19 +32,27 @@
 			String[] details=detail.split(", ");
 			for(String x:details){
 				String[] y=x.split("=");
+				%>
+				<table align="center">
+				<% 
 				switch(y[0]){
-					case "name":out.println("<b>Name: </b>"+y[1]+"<br>");break;
-					case "email":out.println("<b>Email: </b>"+y[1]+"<br>");break;
-					case "mob":out.println("<b>Phone: </b>"+y[1]+"<br>");break;
-					case "officeAddress":out.println("<b>Office Addr: </b>"+y[1]+"<br><br>");break;
+					case "name":out.println("<tr><th><b class='th1'>Name: </b></th><td><span class='th2'>"+y[1]+"</span></td></tr>");break;
+					case "email":out.println("<tr><th><b class='th1'>Email: </b></th><td><span class='th2'>"+y[1]+"</span></td></tr>");break;
+					case "mob":out.println("<tr><th><b class='th1'>Phone: </b></th><td><span class='th2'>"+y[1]+"</span></td></tr>");break;
+					case "officeAddress":out.println("<tr><th><b class='th1'>Office Addr: </b></th><td><span class='th2'>"+y[1]+"</span></td></tr>");break;
 				}
+				%>
+				</table>
+				<% 
 			}
 			if(session.getAttribute("celebId")!=null){
 				int celebId=(Integer)session.getAttribute("celebId");
 				%>
-					<button><a href="applyForm.jsp?celebId=<% out.print(celebId); %>">
-					<b>Apply</b>
-					</a></button>
+					<br/>
+					<div align="center">
+					<button><a id="anch2" href="applyForm.jsp?celebId=<% out.print(celebId); %>">
+					<b>Aply for Appointment</b>
+					</a></button></div>
 				<% 
 			}
 		}

@@ -49,7 +49,7 @@ public class suggestCelebs extends HttpServlet {
 					int celebId=celebID.get(i);
 					String celName=celebName.get(i);
 					if(name.equalsIgnoreCase(celName.substring(0,n))) {
-						out.print("<a href='showCelebGet?celebId="+celebId+"'><b>"+celName+"</b></a>"+"<br>");
+						out.print("<a style='text-decoration:none' href='showCelebGet?celebId="+celebId+"'>"+celName+"</a>"+"<br>");
 						//System.out.println("<a href='showCelebGet?celebId="+celebId+"'><b>"+celName+"</b></a>"+"<br>");
 					}
 				}

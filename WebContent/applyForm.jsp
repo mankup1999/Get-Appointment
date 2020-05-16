@@ -7,12 +7,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Apply Form</title>
+<link rel="stylesheet" href="applyForm.css">
 </head>
-<body>
+<body id="body">
+<div id="div2">
+	<button class="input1"><a style="text-decoration:none;color:green;" href="http://localhost:8080/appointment/Main.jsp">Back</a></button>
+	</div>
+	<div id="div1" align="right">
 	<form action="ApplicantLogout">
-		<input type="submit" value="Logout">
+		<input class="input1" type="submit" value="Logout">
 	</form>
-	<button><a href="http://localhost:8080/appointment/Main.jsp">Back</a></button>
+	</div>
+	<div id="div3">
 	<%
 		int celebId=-1;
 		if(request.getParameter("celebId")==null)
@@ -22,13 +28,16 @@
 		session.setAttribute("celebId", celebId);
 		Service serv=new Service();
 		Celebrity celeb=serv.getCelebrity(celebId);
-		out.println("<h1>"+celeb.getName()+"<h1>");
-		out.println("<h4>"+celeb.getOfficeAddress()+"<h4>");
+		out.println("<b id='title'>"+celeb.getName()+"</b><br>");
+		out.println("<b id='addr'>"+celeb.getOfficeAddress()+"</b><br><br><br>");
 	%>
+	<div style="margin-left:30px;">
 	<form action="applyAppointment" method="post">
-		Why do you want appointment?(100-300 words)<br>
-		<textarea rows="10" cols="100" name="intent" required></textarea><br>
-		<input type="submit" value="apply">
+		<span id="span1">Why do you want appointment?(100-300 words)</span><br>
+		<textarea id="tx1" rows="5" cols="100" name="intent" required></textarea><br>
+		<input id="apply" type="submit" value="apply">
 	</form>
+	</div>
+	</div>
 </body>
 </html>
