@@ -3,7 +3,7 @@
                                     Technologies - Java, JSP, MySQL, HTML, CSS, JavaScript, AJAX
                                     Platform - Eclipse EE, MySQL Editor
                                     
-[Presentation here . . . ](https://github.com/mankup1999/Get-Appointment/files/4639791/Get.Appointment.pdf)
+[Presentation here . . . ](https://github.com/mankup1999/DataSets/files/4721336/Get.Appointment_Final.pdf)
 [Demo here . . . ](https://youtu.be/NKnfGnY_LSI)
 
                                     
